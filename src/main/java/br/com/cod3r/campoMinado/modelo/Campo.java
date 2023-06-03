@@ -1,4 +1,4 @@
-package modelo;
+package br.com.cod3r.campoMinado.modelo;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package modelo;
+package br.com.cod3r.campoMinado.modelo;
 
 public class Tabuleiro {
 }
