@@ -119,5 +119,16 @@ public class CampoTest {
         assertTrue(campo22.isAberto() && campo11.isFechado());
     }
 
+    @Test
+    void testeObjetivoAlcancadoNaoMinadoEAberto(){
+        campo.abrir();
+        assertTrue(campo.objetivoAlcancado());
+    }
+    @Test
+    void testeObjetivoAlcancadoMinadoEAberto(){
+        campo.minar();
+        campo.aterarMarcacao();
+        assertTrue(campo.objetivoAlcancado());
+    }
 
 }
