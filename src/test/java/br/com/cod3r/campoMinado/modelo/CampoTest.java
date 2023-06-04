@@ -1,6 +1,7 @@
 package br.com.cod3r.campoMinado.modelo;
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.com.cod3r.campoMinado.excecao.ExplosaoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +65,28 @@ public class CampoTest {
         campo.aterarMarcacao();
         campo.aterarMarcacao();
         assertFalse(campo.isMarcado());
+    }
+    @Test
+    void testeAbrirNaoMinadoNaoMarcado(){
+        assertTrue(campo.abrir());
+    }
+    @Test
+    void testeAbrirNaoMinadoMarcado(){
+        campo.aterarMarcacao();
+        assertFalse(campo.abrir());
+    }
+    @Test
+    void testeAbrirMinadoMarcado(){
+        campo.aterarMarcacao();
+        campo.minar();
+        assertFalse(campo.abrir());
+    }
+    @Test
+    void testeAbrirMinadoNaoMarcado(){
+        campo.minar();
+        assertThrows(ExplosaoException.class,()->{
+        campo.abrir();
+        });
     }
 
 
