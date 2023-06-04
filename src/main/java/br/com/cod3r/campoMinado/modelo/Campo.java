@@ -1,5 +1,7 @@
 package br.com.cod3r.campoMinado.modelo;
 
+import br.com.cod3r.campoMinado.excecao.ExplosaoException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,17 @@ public class Campo {
         if(!aberto){
             marcado = !marcado;
         }
+    }
+
+    boolean abrir(){
+        if(!aberto && !marcado){
+            aberto = true;
+
+            if(minado){
+                throw new ExplosaoException();
+            }
+        }
+        return false;
     }
 
 
