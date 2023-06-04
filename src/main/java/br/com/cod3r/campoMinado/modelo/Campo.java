@@ -37,4 +37,11 @@ public class Campo {
         }
     }
 
+    void aterarMarcacao(){
+        if(!aberto){
+            marcado = !marcado;
+        }
+    }
+
+
 }
