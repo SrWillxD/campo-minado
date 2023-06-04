@@ -52,8 +52,18 @@ public class Campo {
             if(minado){
                 throw new ExplosaoException();
             }
+
+            if(vizinhancaSegura()){
+                vizinhos.forEach(vizinhos->vizinhos.abrir());
+            }
+            return true;
+        }else{
+            return false;
         }
-        return false;
+    }
+
+    boolean vizinhancaSegura(){
+        return vizinhos.stream().noneMatch(v->v.minado);
     }
 
 
