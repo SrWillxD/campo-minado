@@ -39,7 +39,7 @@ public class Campo {
         }
     }
 
-    void aterarMarcacao(){
+    void alterarMarcacao(){
         if(!aberto){
             marcado = !marcado;
         }

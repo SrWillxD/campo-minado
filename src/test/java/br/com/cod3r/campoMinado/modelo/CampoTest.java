@@ -57,13 +57,13 @@ public class CampoTest {
     }
     @Test
     void testeAlternarMarcacao(){
-        campo.aterarMarcacao();
+        campo.alterarMarcacao();
         assertTrue(campo.isMarcado());
     }
     @Test
     void testeAlternarMarcacaoDuasChamadas(){
-        campo.aterarMarcacao();
-        campo.aterarMarcacao();
+        campo.alterarMarcacao();
+        campo.alterarMarcacao();
         assertFalse(campo.isMarcado());
     }
     @Test
@@ -72,12 +72,12 @@ public class CampoTest {
     }
     @Test
     void testeAbrirNaoMinadoMarcado(){
-        campo.aterarMarcacao();
+        campo.alterarMarcacao();
         assertFalse(campo.abrir());
     }
     @Test
     void testeAbrirMinadoMarcado(){
-        campo.aterarMarcacao();
+        campo.alterarMarcacao();
         campo.minar();
         assertFalse(campo.abrir());
     }
@@ -127,7 +127,7 @@ public class CampoTest {
     @Test
     void testeObjetivoAlcancadoMinadoEAberto(){
         campo.minar();
-        campo.aterarMarcacao();
+        campo.alterarMarcacao();
         assertTrue(campo.objetivoAlcancado());
     }
 
