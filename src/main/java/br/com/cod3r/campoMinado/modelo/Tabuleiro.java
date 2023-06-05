@@ -21,6 +21,19 @@ public class Tabuleiro {
 
     }
 
+    public void abrir(int linha, int coluna){
+        campos.parallelStream()
+                .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                .findFirst()
+                .ifPresent(c -> c.abrir());
+    }
+    public void alterarMarcacao(int linha, int coluna){
+        campos.parallelStream()
+                .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                .findFirst()
+                .ifPresent(c -> c.alterarMarcacao());
+    }
+
     private void gerarCampos(){
         for(int linha = 0; linha < linhas; linha++){
             for(int colunas = 0; colunas < this.colunas; colunas++){
@@ -67,7 +80,6 @@ public class Tabuleiro {
             }
             sb.append("\n");
         }
-        
         return sb.toString();
     }
 
