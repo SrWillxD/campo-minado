@@ -2,6 +2,7 @@ package br.com.cod3r.campoMinado.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Tabuleiro {
     private int linhas;
@@ -29,11 +30,21 @@ public class Tabuleiro {
     }
 
     private void associarVizinhos(){
-
+        for(Campo c1 : campos){
+            for(Campo c2 : campos){
+                c1.adicionarVizinho(c2);
+            }
+        }
     }
 
     private void sortearMinas(){
-        
+        long minasArmadas = 0;
+        Predicate<Campo> minado = Campo::isMinado;
+        do{
+            minasArmadas = campos.stream().filter(minado).count();
+            int aleatorio = (int) (Math.random() * campos.size());
+            campos.get(aleatorio).minar();
+        }while(minasArmadas<minas);
     }
 
 
