@@ -20,6 +20,18 @@ public class Tabuleiro {
         sortearMinas();
 
     }
+    public Campo getCampos(int linha, int coluna) {
+        for (Campo campo : campos) {
+            if (campo.getLinha() == linha && campo.getColuna() == coluna) {
+                return campo;
+            }
+        }
+        throw new IllegalArgumentException("Campo não encontrado para as coordenadas especificadas: " + linha + ", " + coluna);
+    }
+
+    public int getQuantidadeDeCampos(){
+        return campos.size();
+    }
 
     public void abrir(int linha, int coluna){
         campos.parallelStream()
@@ -51,7 +63,7 @@ public class Tabuleiro {
     }
 
     private void sortearMinas(){
-        long minasArmadas = 0;
+        long minasArmadas;
         Predicate<Campo> minado = Campo::isMinado;
         do{
             minasArmadas = campos.stream().filter(minado).count();
@@ -77,6 +89,7 @@ public class Tabuleiro {
                 sb.append(" ");
                 sb.append(campos.get(i));
                 sb.append(" ");
+                i++;
             }
             sb.append("\n");
         }
