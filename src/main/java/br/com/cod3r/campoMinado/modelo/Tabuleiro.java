@@ -1,5 +1,8 @@
 package br.com.cod3r.campoMinado.modelo;
 
+import br.com.cod3r.campoMinado.excecao.ExplosaoException;
+import br.com.cod3r.campoMinado.visao.ANSIColors;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -34,10 +37,15 @@ public class Tabuleiro {
     }
 
     public void abrir(int linha, int coluna){
+        try{
         campos.parallelStream()
                 .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
                 .findFirst()
                 .ifPresent(c -> c.abrir());
+        }catch(ExplosaoException e){
+            campos.forEach(c -> c.setAberto(true));
+            throw e;
+        }
     }
     public void alterarMarcacao(int linha, int coluna){
         campos.parallelStream()
@@ -66,9 +74,9 @@ public class Tabuleiro {
         long minasArmadas;
         Predicate<Campo> minado = Campo::isMinado;
         do{
-            minasArmadas = campos.stream().filter(minado).count();
             int aleatorio = (int) (Math.random() * campos.size());
             campos.get(aleatorio).minar();
+            minasArmadas = campos.stream().filter(minado).count();
         }while(minasArmadas<minas);
     }
 
@@ -81,11 +89,23 @@ public class Tabuleiro {
         sortearMinas();
     }
 
-    public String  toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        sb.append("  ");
+        for (int c = 0; c < colunas; c++) {
+            sb.append(" ");
+            sb.append(ANSIColors.BLUE_FG + c + ANSIColors.RESET);
+            sb.append(" ");
+        }
+
+        sb.append("\n");
+
         int i = 0;
-        for(int l = 0; l < linhas; l++){
-            for(int c = 0; c < colunas; c++){
+        for (int l = 0; l < linhas; l++) {
+            sb.append(ANSIColors.BLUE_FG + l + ANSIColors.RESET);
+            sb.append(" ");
+            for (int c = 0; c < colunas; c++) {
                 sb.append(" ");
                 sb.append(campos.get(i));
                 sb.append(" ");
@@ -93,6 +113,7 @@ public class Tabuleiro {
             }
             sb.append("\n");
         }
+
         return sb.toString();
     }
 
