@@ -50,7 +50,7 @@ public class TabuleiroConsole{
                         .map(e -> Integer.parseInt(e.trim()))
                         .iterator();
 
-                digitado = capturarValorDigitado("1 - Abrir ou 2 - (Des)Marcar");
+                digitado = capturarValorDigitado("1-Abrir ou 2-(Des)Marcar");
 
                 if("1".equals(digitado)){
                     tabuleiro.abrir(xy.next(), xy.next());
@@ -58,10 +58,11 @@ public class TabuleiroConsole{
                     tabuleiro.alterarMarcacao(xy.next(), xy.next());
                 }
             }
-
-            System.out.println("Você ganhou!!");
+            System.out.println(tabuleiro);
+            System.out.println(ANSIColors.GREEN_BG + ANSIColors.YELLOW_FG + "Você ganhou!!!" + ANSIColors.RESET);
         }catch(ExplosaoException e){
-            System.out.println("Você perdeu!");
+            System.out.println(tabuleiro);
+            System.out.println(ANSIColors.RED_BG + ANSIColors.YELLOW_FG + "VOCÊ PERDEU!!!" + ANSIColors.RESET);
         }
     }
 

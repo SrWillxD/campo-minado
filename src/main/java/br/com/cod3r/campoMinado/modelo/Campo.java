@@ -1,6 +1,7 @@
 package br.com.cod3r.campoMinado.modelo;
 
 import br.com.cod3r.campoMinado.excecao.ExplosaoException;
+import br.com.cod3r.campoMinado.visao.ANSIColors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,10 @@ public class Campo {
     public boolean isMarcado(){
         return marcado;
     }
+
+    void setAberto(boolean aberto){
+        this.aberto = aberto;
+    }
     public boolean isAberto(){
         return aberto;
     }
@@ -109,15 +114,15 @@ public class Campo {
 
     public String toString(){
         if(marcado){
-            return "X";
+            return ANSIColors.YELLOW_FG + "X" + ANSIColors.RESET;
         }else if(aberto && minado){
-            return "*";
+            return ANSIColors.RED_FG + "*" + ANSIColors.RESET;
         }else if(aberto && minasNaVisinhanca() > 0 ){
-            return Long.toString(minasNaVisinhanca());
+            return ANSIColors.WHITE_FG + Long.toString(minasNaVisinhanca()) + ANSIColors.RESET;
         }else if(aberto ){
             return " ";
         }else{
-            return "?";
+            return ANSIColors.PURPLE_FG + "?" + ANSIColors.RESET;
         }
     }
 }
