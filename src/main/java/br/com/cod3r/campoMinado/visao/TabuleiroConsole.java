@@ -4,6 +4,8 @@ import br.com.cod3r.campoMinado.excecao.ExplosaoException;
 import br.com.cod3r.campoMinado.excecao.SairException;
 import br.com.cod3r.campoMinado.modelo.Tabuleiro;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class TabuleiroConsole{
@@ -43,6 +45,18 @@ public class TabuleiroConsole{
                 System.out.println(tabuleiro);
 
                 String digitado = capturarValorDigitado("Digite (x, y): ");
+
+                Iterator<Integer> xy = Arrays.stream(digitado.split(","))
+                        .map(e -> Integer.parseInt(e.trim()))
+                        .iterator();
+
+                digitado = capturarValorDigitado("1 - Abrir ou 2 - (Des)Marcar");
+
+                if("1".equals(digitado)){
+                    tabuleiro.abrir(xy.next(), xy.next());
+                }else if("2".equals(digitado)){
+                    tabuleiro.alterarMarcacao(xy.next(), xy.next());
+                }
             }
 
             System.out.println("Você ganhou!!");
