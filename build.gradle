@@ -14,12 +14,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-task run(type: JavaExec) {
-    main = 'br.com.cod3r.campoMinado.Aplicacao'
-    classpath sourceSets.main.runtimeClasspath
-}
-
-
 test {
     useJUnitPlatform()
 }
