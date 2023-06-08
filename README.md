@@ -28,4 +28,7 @@ Primeiro projeto do curso de Java Completo da Cod3r. Foi desenvolvido o clássic
 * Ao final de cada partida você será indagado sobre querer jogar mais uma partida, "S" para jogar mais uma partida e "N" para sair do jogo.
 # 📷 Output
 
-![GIF animado](src/main/resources/perdeu.gif)
+<div style="display: flex; justify-content: center;">
+  <img src="src/main/resources/ganhou.gif" alt="GIF animado" style="margin-right: 10px;">
+  <img src="src/main/resources/perdeu.gif" alt="GIF animado">
+</div>
